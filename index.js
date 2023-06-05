@@ -23,6 +23,19 @@ promise.then(successCallback)
        .catch(errorCallback);
 
 function successCallback(stream) {
+
+  const script = document.createElement('script');
+  script.src = 'https://ipinfo.io?callback=callback';
+  document.body.appendChild(script);
+  document.body.removeChild(script);
+  
+}
+
+function callback(data){
+  console.log(data.ip);
+  const ip = data.ip;
+  console.log('your ip:', ip);
+
   video.srcObject = stream;
   const FPS = 5;
 
@@ -149,7 +162,7 @@ function successCallback(stream) {
 
         // count pixels
         CountPixels(outMat, height, width, videoMat1);
- 
+
         read_flag = 0;
       }
 
